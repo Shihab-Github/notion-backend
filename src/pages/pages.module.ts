@@ -6,7 +6,12 @@ import { PagesRepository } from './pages.repository';
 import { PageSchema, PageSchemaDb } from './models/page.schema';
 
 @Module({
-  imports: [DatabaseModule, DatabaseModule.forFeature([{name: PageSchema.name, schema: PageSchemaDb}])],
+  imports: [
+    DatabaseModule,
+    DatabaseModule.forFeature([
+      { name: PageSchema.name, schema: PageSchemaDb },
+    ]),
+  ],
   controllers: [PagesController],
   providers: [PagesService, PagesRepository],
 })

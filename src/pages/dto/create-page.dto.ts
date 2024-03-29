@@ -1,10 +1,10 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreatePageDto {
-    @IsString()
-    @IsNotEmpty()
-    title: string;
+  @IsString()
+  @IsNotEmpty()
+  title: string;
 
-    @IsOptional()
-    parentDocumentId: string | null;
+  @IsOptional()
+  parentDocumentId: string | null;
 }

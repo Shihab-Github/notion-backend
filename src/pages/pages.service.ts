@@ -5,7 +5,6 @@ import { PagesRepository } from './pages.repository';
 
 @Injectable()
 export class PagesService {
-
   constructor(private readonly pageRepository: PagesRepository) {}
 
   create(createPageDto: CreatePageDto) {
@@ -14,25 +13,28 @@ export class PagesService {
       timestamp: new Date(),
       userId: '123',
       isArchived: false,
-      published: false
-    })
-  }
-
-  findAll(parentPageId: string) {
-    return this.pageRepository.findAll({parentDocumentId: parentPageId})
-  }
-
-  findOne(id: string) {
-    return this.pageRepository.findOne({_id: id});
-  }
-
-  update(id: string, updatePageDto: UpdatePageDto) {
-    return this.pageRepository.findOneAndUpdate({_id: id}, {
-      $set: updatePageDto
+      published: false,
     });
   }
 
+  findAll(parentPageId: string) {
+    return this.pageRepository.findAll({ parentDocumentId: parentPageId });
+  }
+
+  findOne(id: string) {
+    return this.pageRepository.findOne({ _id: id });
+  }
+
+  update(id: string, updatePageDto: UpdatePageDto) {
+    return this.pageRepository.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: updatePageDto,
+      },
+    );
+  }
+
   remove(id: string) {
-    return this.pageRepository.findOneAndDelete({_id: id});
+    return this.pageRepository.findOneAndDelete({ _id: id });
   }
 }

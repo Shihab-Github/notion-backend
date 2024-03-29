@@ -31,24 +31,30 @@ export abstract class AbstractRepository<TDocument extends AbstractSchema> {
     filterQuery: FilterQuery<TDocument>,
     update: UpdateQuery<TDocument>,
   ): Promise<TDocument> {
-    const document = await this.model.findOneAndUpdate(filterQuery, update, {
-      new: true,
-    }).lean<TDocument>(true);
+    const document = await this.model
+      .findOneAndUpdate(filterQuery, update, {
+        new: true,
+      })
+      .lean<TDocument>(true);
 
     if (!document) {
-        throw new NotFoundException('Document was not found');
+      throw new NotFoundException('Document was not found');
     }
 
     return document;
   }
 
   async findAll(filterQuery: FilterQuery<TDocument>): Promise<TDocument[]> {
-    const documents = await this.model.find(filterQuery).lean<TDocument[]>(true)
-    return documents
+    const documents = await this.model
+      .find(filterQuery)
+      .lean<TDocument[]>(true);
+    return documents;
   }
 
   async findOneAndDelete(filterQuery: FilterQuery<TDocument>) {
-    const deletedDocument = await this.model.findOneAndDelete(filterQuery).lean<TDocument>(true)
-    return deletedDocument
+    const deletedDocument = await this.model
+      .findOneAndDelete(filterQuery)
+      .lean<TDocument>(true);
+    return deletedDocument;
   }
 }

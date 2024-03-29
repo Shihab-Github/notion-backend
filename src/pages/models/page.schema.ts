@@ -1,25 +1,25 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { AbstractSchema } from "src/database/abstract.schema";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { AbstractSchema } from 'src/database/abstract.schema';
 
-@Schema({versionKey: false})
+@Schema({ versionKey: false })
 export class PageSchema extends AbstractSchema {
-    @Prop()
-    title: string;
+  @Prop()
+  title: string;
 
-    @Prop()
-    isArchived?: Boolean;
+  @Prop()
+  isArchived?: boolean;
 
-    @Prop()
-    published?: Boolean;
+  @Prop()
+  published?: boolean;
 
-    @Prop()
-    timestamp: Date;
+  @Prop()
+  timestamp: Date;
 
-    @Prop()
-    userId: string;
+  @Prop()
+  userId: string;
 
-    @Prop()
-    parentDocumentId?: string;
+  @Prop()
+  parentDocumentId?: string;
 }
 
-export const PageSchemaDb = SchemaFactory.createForClass(PageSchema)
+export const PageSchemaDb = SchemaFactory.createForClass(PageSchema);
