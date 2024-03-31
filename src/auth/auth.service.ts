@@ -14,7 +14,10 @@ export class AuthService {
 
   login(user: UserSchema) {
     const tokenPayload: TokenPayload = {
-        userId: user._id.toHexString()
+        userId: user._id.toHexString(),
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email
     }
 
     const expires = new Date()
@@ -23,10 +26,6 @@ export class AuthService {
     )
 
     const token = this.jwtService.sign(tokenPayload)
-    // response.cookie('Authentication', token, {
-    //     httpOnly: true,
-    //     expires
-    // })
     return {
       access_token: token
     }

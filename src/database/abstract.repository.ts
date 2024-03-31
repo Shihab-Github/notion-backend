@@ -20,9 +20,9 @@ export abstract class AbstractRepository<TDocument extends AbstractSchema> {
       .findOne(filterQuery)
       .lean<TDocument>(true);
 
-    if (!document) {
-      throw new NotFoundException('Document was not found');
-    }
+    // if (!document) {
+    //   throw new NotFoundException('Document was not found');
+    // }
 
     return document;
   }

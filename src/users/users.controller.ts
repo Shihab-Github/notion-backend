@@ -17,11 +17,11 @@ export class UsersController {
     return this.userService.getUsers();
   }
 
+  //dummy protected route
   @Get('user-details')
   @UseGuards(JwtAuthGuard)
   getUserDetails(@Request() req) {
     const user = req.user
-    console.log('user: ', user)
     return user
   }
 }

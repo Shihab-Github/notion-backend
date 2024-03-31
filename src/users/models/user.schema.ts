@@ -7,6 +7,12 @@ export class UserSchema extends AbstractSchema {
   email: string;
 
   @Prop()
+  firstName: string;
+
+  @Prop()
+  lastName: string;
+
+  @Prop()
   password: string;
 }
 
