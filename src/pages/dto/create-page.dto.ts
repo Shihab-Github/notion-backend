@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreatePageDto {
   @IsString()
@@ -7,4 +7,12 @@ export class CreatePageDto {
 
   @IsOptional()
   parentDocumentId: string | null;
+
+  @IsBoolean()
+  @IsOptional()
+  isArchived: boolean;
+
+  @IsOptional()
+  @IsString()
+  userId: string
 }
