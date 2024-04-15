@@ -14,5 +14,5 @@ export class CreatePageDto {
 
   @IsOptional()
   @IsString()
-  userId: string
+  userId: string;
 }

@@ -8,7 +8,7 @@ import {
   Delete,
   Query,
   UseGuards,
-  Request
+  Request,
 } from '@nestjs/common';
 import { PagesService } from './pages.service';
 import { CreatePageDto } from './dto/create-page.dto';
@@ -22,15 +22,15 @@ export class PagesController {
   @UseGuards(JwtAuthGuard)
   @Post()
   create(@Request() req, @Body() createPageDto: CreatePageDto) {
-    const user = req.user
-    createPageDto.userId = user._id
+    const user = req.user;
+    createPageDto.userId = user._id;
     return this.pagesService.create(createPageDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get()
   findAll(@Request() req, @Query('parentPageId') parentPageId: string) {
-    const user = req.user
+    const user = req.user;
     return this.pagesService.findAll(parentPageId, user._id);
   }
 
@@ -51,8 +51,6 @@ export class PagesController {
 
   @Patch('archive/:id')
   archive(@Param('id') id: string, @Body() updatePageDto: UpdatePageDto) {
-    console.log('doc id: ', id)
-    console.log('patch: ', updatePageDto)
-    return this.pagesService.archiveDocument(id, updatePageDto)
+    return this.pagesService.archiveDocument(id, updatePageDto);
   }
 }

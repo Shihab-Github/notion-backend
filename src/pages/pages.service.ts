@@ -17,7 +17,11 @@ export class PagesService {
   }
 
   findAll(parentPageId: string, userId: string) {
-    return this.pageRepository.findAll({ parentDocumentId: parentPageId, userId, isArchived: false });
+    return this.pageRepository.findAll({
+      parentDocumentId: parentPageId,
+      userId,
+      isArchived: false,
+    });
   }
 
   findOne(id: string) {
@@ -38,15 +42,20 @@ export class PagesService {
   }
 
   async archiveDocument(id: string, updatePageDto: UpdatePageDto) {
-    const documents = await this.pageRepository.findAll({parentDocumentId: id})
-    
-    for(let i = 0; i < documents.length; i++) {
+    const documents = await this.pageRepository.findAll({
+      parentDocumentId: id,
+    });
+
+    for (let i = 0; i < documents.length; i++) {
       const item = documents[i];
-      await this.pageRepository.findOneAndUpdate(item._id, { isArchived: true})
-      this.archiveDocument(item._id.toString(), updatePageDto)
+      await this.pageRepository.findOneAndUpdate(item._id, {
+        isArchived: true,
+      });
+      this.archiveDocument(item._id.toString(), updatePageDto);
     }
-    const document = await this.pageRepository.findOne({_id: id})
-    await this.pageRepository.findOneAndUpdate(document._id, { isArchived: true})
-    
+    const document = await this.pageRepository.findOne({ _id: id });
+    await this.pageRepository.findOneAndUpdate(document._id, {
+      isArchived: true,
+    });
   }
 }

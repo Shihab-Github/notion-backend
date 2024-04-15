@@ -14,20 +14,20 @@ export class AuthService {
 
   login(user: UserSchema) {
     const tokenPayload: TokenPayload = {
-        userId: user._id.toHexString(),
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email
-    }
+      userId: user._id.toHexString(),
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
 
-    const expires = new Date()
+    const expires = new Date();
     expires.setSeconds(
-        expires.getSeconds() + this.configService.get('JWT_EXPIRATION')
-    )
+      expires.getSeconds() + this.configService.get('JWT_EXPIRATION'),
+    );
 
-    const token = this.jwtService.sign(tokenPayload)
+    const token = this.jwtService.sign(tokenPayload);
     return {
-      access_token: token
-    }
+      access_token: token,
+    };
   }
 }
